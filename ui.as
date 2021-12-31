@@ -22,7 +22,7 @@ void RenderInterface()
 		return;
 	}
 	
-	UI::SetNextWindowSize(676, 575);
+	UI::SetNextWindowSize(686, 605);
 	UI::SetNextWindowPos(300, 300, UI::Cond::Once);
 	
 	UI::Begin("Track Generator", display, UI::WindowFlags::NoResize);	
@@ -41,7 +41,7 @@ void RenderInterface()
 	
 	UI::Separator();
 	UI::Markdown("**Block Count**");
-	st_maxBlocks = UI::SliderInt("\\$bbb(excluding start and finish)", st_maxBlocks, 5, 125);
+	st_maxBlocks = UI::SliderInt("\\$bbb(excluding start and finish)", st_maxBlocks, 5, 150);
 	UI::Text("\\$ff0\\$s" + Icons::ExclamationCircle +" Generated track doesn't always have the exact number of blocks, because Track Generator");
 	UI::Text("\\$ff0\\$sisn't perfect and it can get stuck. In that case Track Generator will just try to place the finish block.");
 	
