@@ -2,10 +2,10 @@
 name     = "TrackGenerator"
 author   = "AvondaleZPR"
 category = "Map Editor"
-version = "0.6.1"
+version = "0.7"
 siteid = 156
 
 [script]
 imports = [ "Icons.as", "Formatting.as" ]
 
-timeout = 10000
+timeout = 15000

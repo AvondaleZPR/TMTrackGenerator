@@ -68,38 +68,67 @@ string RandomBlock()
 	{
 		return RD_CONNECT;
 	}
-	else if (randomInt <= 47)
+	else if (randomInt <= 7 && coolblocks)
+	{
+		return RD_COOL1;
+	}
+	else if (randomInt <= 8 && coolblocks)
+	{
+		return RD_COOL2;
+	}
+	
+	else if (randomInt <= 43)
 	{
 		return RD_STRAIGHT;
 	}
 	else if(randomInt <= 55) // special blocks
 	{
-		if(randomInt <= 48)
+		if(randomInt <= 44)
+		{	
+			if(!nobrake) {return RD_STRAIGHT;}
+			return RD_NOBRAKE;
+		}
+		else if(randomInt <= 45)
+		{
+			if(!cruise) {return RD_STRAIGHT;}
+			return RD_CRUISE;
+		}
+		else if(randomInt <= 46)
 		{	
 			if(!fragile) {return RD_STRAIGHT;}
 			return RD_FRAGILE;
 		}
-		else if(randomInt <= 49)
+		else if(randomInt <= 47)
 		{
 			if(!nosteer) {return RD_STRAIGHT;}
 			return RD_NOSTEER;
 		}
-		else if(randomInt <= 50)
+		else if(randomInt <= 48)
 		{
 			if(!slowmotion) {return RD_STRAIGHT;}
 			return RD_SLOWMOTION;
 		}	
-		else if(randomInt <= 51 && noengine)
+		else if(randomInt <= 49)
 		{
+			if(!noengine) {return RD_STRAIGHT;}
 			return RD_NOENGINE;
 		}			
-		else if(randomInt <= 52 && booster1)
+		else if(randomInt <= 50)
 		{
+			if(!booster1) {return RD_STRAIGHT;}
 			return RD_BOOSTER1;
-		}			
-		else if(randomInt <= 53 && turbo2)
+		}		
+		else if(randomInt <= 51 && booster2)
+		{
+			return RD_BOOSTER2;
+		}				
+		else if(randomInt <= 52 && turbo2)
 		{
 			return RD_TURBO2;
+		}	
+		else if(randomInt <= 53 && turbor)
+		{
+			return RD_TURBOR;
 		}		
 		else if(randomInt <= 54 && reset)
 		{
@@ -143,7 +172,38 @@ void RandomBlocks()
 		bool ready = false;
 		while(!ready)
 		{
-			ready = SetBlockType(MathRand(1,5));
+			ready = SetBlockType(MathRand(1,10));
 		}
 	}
+}
+
+CGameEditorPluginMap::EMapElemColor RandomColor()
+{
+	int randomInt = Math::Rand(1,7);
+	if(randomInt == 1)
+	{
+		return CGameEditorPluginMap::EMapElemColor::Default;
+	}
+	else if(randomInt == 2)
+	{
+		return CGameEditorPluginMap::EMapElemColor::White;
+	}
+	else if(randomInt == 3)
+	{
+		return CGameEditorPluginMap::EMapElemColor::Green;
+	}
+	else if(randomInt == 4)
+	{
+		return CGameEditorPluginMap::EMapElemColor::Blue;
+	}
+	else if(randomInt == 5)
+	{
+		return CGameEditorPluginMap::EMapElemColor::Red;
+	}
+	else if(randomInt == 6)
+	{
+		return CGameEditorPluginMap::EMapElemColor::Black;
+	}	
+	
+	return CGameEditorPluginMap::EMapElemColor::Default;
 }
