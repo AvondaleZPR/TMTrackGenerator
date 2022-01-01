@@ -141,7 +141,12 @@ void Begin()
 		}
 		else if(block == RD_UP1 || block == RD_UP2)
 		{
-			if(turn == 2 && point.y >= 12)
+			if(point.y >= MAX_Y)
+			{
+				TGprint("WAYTOOHIGH");
+				block = RD_STRAIGHT;
+			}
+			else if(turn == 2 && point.y >= 12)
 			{
 				dir = TurnDirLeft(dir);
 				dir = TurnDirLeft(dir);
@@ -157,7 +162,7 @@ void Begin()
 		}
 		else if(block == RD_CONNECT)
 		{
-			if(CURR_BLOCKS == "TechBlocks") 
+			if(CURR_BLOCKS == "TechBlocks" || CURR_BLOCKS == "WaterBlocks") 
 			{
 				techConnect = true;
 				block = RD_STRAIGHT;
@@ -266,7 +271,7 @@ void Begin()
 					dir = TurnDirLeft(dir);					
 				}
 				
-				if (CURR_BLOCKS != "TechBlocks")
+				if (CURR_BLOCKS != "TechBlocks" && CURR_BLOCKS != "WaterBlocks")
 				{	
 					PlaceBlock(map, RD_CONNECT, dir, point);
 				}

@@ -22,7 +22,7 @@ void RenderInterface()
 		return;
 	}
 	
-	UI::SetNextWindowSize(686, 605);
+	UI::SetNextWindowSize(686, 635);
 	UI::SetNextWindowPos(300, 300, UI::Cond::Once);
 	
 	UI::Begin("Track Generator", display, UI::WindowFlags::NoResize);	
@@ -72,6 +72,8 @@ void RenderInterface()
 	UI::SameLine();
 	opengrassroadblocks = UI::Checkbox("Platform Grass Road", opengrassroadblocks);
 	if (opengrassroadblocks) {OpenGrassRoadBlocks();}
+	waterblocks = UI::Checkbox("HALO AM ANDA DA WATA", waterblocks);
+	if (waterblocks) {WaterBlocks();}
 	
 	/*
 	if(IsMultipleBlockTypesSelected()) {

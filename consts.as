@@ -20,5 +20,6 @@ auto PLACE_MODE_FREEMACROBLOCK = CGameEditorPluginMap::EPlaceMode::FreeMacrobloc
 
 //other
 auto STARTING_POINT = int3(24, 9, 24);
+int MAX_Y = 38;
 wstring BANNER_LINK = "https://i.imgur.com/1xIB9bC.jpeg";
 //

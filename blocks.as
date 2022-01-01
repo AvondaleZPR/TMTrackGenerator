@@ -30,14 +30,14 @@ string RD_COOL2 = "";
 //--
 
 //enabled blocks
-bool roadblocks = true, dirtblocks = false, iceblocks = false, icewallblocks = false, sausageblocks = false, opentechroadblocks = false, opendirtroadblocks = false, openiceroadblocks = false, opengrassroadblocks = false;
+bool roadblocks = true, dirtblocks = false, iceblocks = false, icewallblocks = false, sausageblocks = false, opentechroadblocks = false, opendirtroadblocks = false, openiceroadblocks = false, opengrassroadblocks = false, waterblocks = false;
 bool turbo1 = true, turbo2 = false, booster1 = false, booster2 = false, noengine = false, slowmotion = false, fragile = false, nosteer = false, reset = false, cruise = false, nobrake = false, turbor = false;
 bool coolblocks = true, randomcolors = false;
 //--
 
 //walls
 string WALL_STRAIGHT = "TrackWallStraightPillar";
-string WALL_FULL = "DecoWallBase";
+string WALL_FULL = "DecoWallBasePillar";
 //--
 
 //items
@@ -58,6 +58,7 @@ bool IsMultipleBlockTypesSelected()
 	if (opendirtroadblocks) { count++;}
 	if (openiceroadblocks) { count++;}
 	if (opengrassroadblocks) { count++;}
+	if (waterblocks) { count++;}
 	return count > 1;
 }
 
@@ -108,6 +109,11 @@ bool SetBlockType(int id)
 		OpenGrassRoadBlocks();
 		return true;
 	}	
+	else if(id >= 10 && waterblocks && CURR_BLOCKS != "WaterBlocks")
+	{
+		WaterBlocks();
+		return true;
+	}
 	
 	return false;
 }
@@ -123,6 +129,7 @@ void SetBlockType(string type)
 	if(type == "OpenDirtRoadBlocks") {OpenDirtRoadBlocks();}
 	if(type == "OpenIceRoadBlocks") {OpenIceRoadBlocks();}
 	if(type == "OpenGrassRoadBlocks") {OpenGrassRoadBlocks();}
+	if(type == "WaterBlocks") {WaterBlocks();}
 }
 
 //block blanks fillers
@@ -412,5 +419,37 @@ void OpenGrassRoadBlocks()
 	RD_NOBRAKE = "OpenGrassRoadSpecialNoBrake";
 	RD_COOL1 = "DecoPlatformBase";
 	RD_COOL2 = "OpenGrassZoneBase5";
+}
+
+void WaterBlocks()
+{
+	CURR_BLOCKS = "WaterBlocks";
+	RD_STRAIGHT = "RoadWaterStraight";
+	RD_START = "RoadTechStart";
+	RD_FINISH = "RoadTechFinish";
+	RD_TURN1 = "RoadWaterCurve1";
+	RD_TURN2 = "RoadWaterCurve2";
+	RD_TURN3 = "RoadWaterCurve3";
+	RD_TURN4 = "RoadWaterCurve4";
+	RD_TURN5 = "RoadWaterCurve5";
+	RD_UP1 = "RoadTechSlopeBase";
+	RD_UP2 = "RoadTechSlopeBase2";
+	RD_TURBO1 = "RoadTechSpecialTurbo";
+	RD_TURBO2 = "RoadTechSpecialTurbo2";
+	RD_TURBOR = "RoadTechSpecialTurboRoulette";
+	RD_CP = "RoadTechCheckpoint";
+	RD_END = "TrackWallToRoadTech";
+	RD_CONNECT = "RoadTechToRoadTechKEKW";
+	RD_BOOSTER1 = "RoadTechSpecialBoost";
+	RD_BOOSTER2 = "RoadTechSpecialBoost2";
+	RD_NOENGINE = "RoadTechSpecialNoEngine";
+	RD_SLOWMOTION = "RoadTechSpecialSlowMotion";
+	RD_FRAGILE = "RoadTechSpecialFragile";
+	RD_NOSTEER = "RoadTechSpecialNoSteering";	
+	RD_RESET = "RoadTechSpecialReset";
+	RD_CRUISE = "RoadTechSpecialCruise";
+	RD_NOBRAKE = "RoadTechSpecialNoBrake";
+	RD_COOL1 = "RoadWaterBranchCross";
+	RD_COOL2 = "RoadTechRampLow";
 }
 //--

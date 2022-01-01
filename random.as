@@ -172,7 +172,7 @@ void RandomBlocks()
 		bool ready = false;
 		while(!ready)
 		{
-			ready = SetBlockType(MathRand(1,10));
+			ready = SetBlockType(MathRand(1,11));
 		}
 	}
 }

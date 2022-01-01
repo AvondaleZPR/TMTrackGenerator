@@ -20,7 +20,12 @@ bool CanPlaceBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPlugi
 
 	if(!(map.GetBlock(point) is null) && (blockName != RD_TURN2 && blockName != RD_UP2) && (map.GetBlock(point).BlockModel.IdName == WALL_STRAIGHT || map.GetBlock(point).BlockModel.IdName == WALL_FULL))
 	{
-		return true;
+		auto upPoint = point.opAdd(int3(0,1,0));
+		if(!(map.GetBlock(upPoint) is null) && (map.GetBlock(upPoint).BlockModel.IdName == WALL_STRAIGHT || map.GetBlock(upPoint).BlockModel.IdName == WALL_FULL))
+		{
+			return true;
+		}		
+		return false;
 	}
 
     while (!map.IsEditorReadyForRequest) {
