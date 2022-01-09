@@ -6,6 +6,6 @@ version = "0.8"
 siteid = 156
 
 [script]
-imports = [ "Icons.as", "Formatting.as" ]
+imports = [ "Icons.as", "Formatting.as", "Permissions.as" ]
 
 timeout = 15000

@@ -1,3 +1,5 @@
+bool HAS_ADVANCED_EDITOR = Permissions::OpenAdvancedMapEditor();
+
 //vars
 bool display = false, preloaded = false;
 int st_maxBlocks = 45;
@@ -38,6 +40,7 @@ void RenderInterface()
 		Undo();
 	}
 	if(!preloaded) {UI::Text("\\$ff0\\$s" + Icons::ExclamationCircle +" It is recommended to preload the blocks before generating a track.");}
+	if(!HAS_ADVANCED_EDITOR) {UI::Text("\\$f00\\$s" + Icons::ExclamationTriangle +" Some blocks and block styles are not available since you've only got a Starter Edition!");}
 	
 	UI::Separator();
 	UI::Markdown("**Block Count**");
@@ -53,7 +56,7 @@ void RenderInterface()
 	dirtblocks = UI::Checkbox("Dirt Road", dirtblocks);
 	if (dirtblocks) {DirtBlocks();}
 	UI::SameLine();
-	iceblocks = UI::Checkbox("Ice Road", iceblocks);
+	iceblocks = UI::Checkbox("Ice Road", iceblocks) && HAS_ADVANCED_EDITOR;
 	if (iceblocks) {IceBlocks();}
 	UI::SameLine();
 	icewallblocks = UI::Checkbox("Ice Road With Wall", icewallblocks);
@@ -61,18 +64,18 @@ void RenderInterface()
 	UI::SameLine();
 	sausageblocks = UI::Checkbox("Sausage Road", sausageblocks);
 	if (sausageblocks) {SausageBlocks();}	
-	opentechroadblocks = UI::Checkbox("Platform Tech Road", opentechroadblocks);
+	opentechroadblocks = UI::Checkbox("Platform Tech Road", opentechroadblocks) && HAS_ADVANCED_EDITOR;
 	if (opentechroadblocks) {OpenTechRoadBlocks();}
 	UI::SameLine();
-	opendirtroadblocks = UI::Checkbox("Platform Dirt Road", opendirtroadblocks);
+	opendirtroadblocks = UI::Checkbox("Platform Dirt Road", opendirtroadblocks) && HAS_ADVANCED_EDITOR;
 	if (opendirtroadblocks) {OpenDirtRoadBlocks();}
 	UI::SameLine();
-	openiceroadblocks = UI::Checkbox("Platform Ice Road", openiceroadblocks);
+	openiceroadblocks = UI::Checkbox("Platform Ice Road", openiceroadblocks) && HAS_ADVANCED_EDITOR;
 	if (openiceroadblocks) {OpenIceRoadBlocks();}
 	UI::SameLine();
-	opengrassroadblocks = UI::Checkbox("Platform Grass Road", opengrassroadblocks);
+	opengrassroadblocks = UI::Checkbox("Platform Grass Road", opengrassroadblocks) && HAS_ADVANCED_EDITOR;
 	if (opengrassroadblocks) {OpenGrassRoadBlocks();}
-	waterblocks = UI::Checkbox("HALO AM ANDA DA WATA", waterblocks);
+	waterblocks = UI::Checkbox("HALO AM ANDA DA WATA", waterblocks) && HAS_ADVANCED_EDITOR;
 	if (waterblocks) {WaterBlocks();}
 	
 	/*
@@ -106,16 +109,16 @@ void RenderInterface()
 	UI::Markdown("**Special Blocks**");
 	UI::Text("\\$ff0\\$s" + Icons::ExclamationCircle + " Some of those blocks can make track unbeatable.");
 	turbo1 = UI::Checkbox("Turbo", turbo1); UI::SameLine();
-	turbo2 = UI::Checkbox("Super Turbo", turbo2); UI::SameLine();
-	turbor = UI::Checkbox("Turbo R", turbor); UI::SameLine();
+	turbo2 = UI::Checkbox("Super Turbo", turbo2) && HAS_ADVANCED_EDITOR; UI::SameLine();
+	turbor = UI::Checkbox("Turbo R", turbor) && HAS_ADVANCED_EDITOR; UI::SameLine();
 	booster1 = UI::Checkbox("Reactor Boost", booster1); UI::SameLine();
-	booster2 = UI::Checkbox("Super Reactor Boost", booster2); UI::SameLine();
+	booster2 = UI::Checkbox("Super Reactor Boost", booster2) && HAS_ADVANCED_EDITOR; UI::SameLine();
 	noengine = UI::Checkbox("\\$ff0Engine Off", noengine); 
 	reset = UI::Checkbox("Reset Block", reset); UI::SameLine();
 	slowmotion = UI::Checkbox("Riolu Block", slowmotion); UI::SameLine();	
-	fragile = UI::Checkbox("Fragile", fragile); UI::SameLine();	
-	cruise = UI::Checkbox("Cruise", cruise); UI::SameLine();
-	nobrake = UI::Checkbox("No Brakes", nobrake); UI::SameLine();
+	fragile = UI::Checkbox("Fragile", fragile); UI::SameLine();
+	cruise = UI::Checkbox("Cruise", cruise) && HAS_ADVANCED_EDITOR; UI::SameLine();
+	nobrake = UI::Checkbox("No Brakes", nobrake) && HAS_ADVANCED_EDITOR; UI::SameLine();
 	nosteer = UI::Checkbox("\\$ff0No Steering", nosteer); 
 	UI::Separator();
 	
@@ -125,7 +128,7 @@ void RenderInterface()
 	*/
 	
 	UI::Markdown("**Other Options**");
-	coolblocks = UI::Checkbox("Use cool blocks \\$bbb(Tech Ramps, Dirt Bumps, etc)", coolblocks); 
+	coolblocks = UI::Checkbox("Use cool blocks \\$bbb(Tech Ramps, Dirt Bumps, etc)", coolblocks) && HAS_ADVANCED_EDITOR; 
 	randomcolors = UI::Checkbox("Paint blocks with random colors \\$bbb(Doesn't get affected by seed)", randomcolors);
 	UI::Separator();
 	
