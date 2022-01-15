@@ -1,4 +1,4 @@
-bool HAS_ADVANCED_EDITOR = Permissions::OpenAdvancedMapEditor();
+bool HAS_ADVANCED_EDITOR = false;
 
 //vars
 bool display = false, preloaded = false;
@@ -7,6 +7,8 @@ int st_maxBlocks = 45;
 
 void RenderMenu()
 {
+	HAS_ADVANCED_EDITOR = Permissions::OpenAdvancedMapEditor();
+
 	if (UI::MenuItem("\\$f00" + Icons::Random + "\\$fff Track Generator")) {	
 		if (cast<CGameCtnEditorFree>(cast<CTrackMania>(GetApp()).Editor) is null) {
 			warn("editor is not opened!");
@@ -115,7 +117,7 @@ void RenderInterface()
 	booster2 = UI::Checkbox("Super Reactor Boost", booster2) && HAS_ADVANCED_EDITOR; UI::SameLine();
 	noengine = UI::Checkbox("\\$ff0Engine Off", noengine); 
 	reset = UI::Checkbox("Reset Block", reset); UI::SameLine();
-	slowmotion = UI::Checkbox("Riolu Block", slowmotion); UI::SameLine();	
+	slowmotion = UI::Checkbox("Slow Motion", slowmotion); UI::SameLine();	
 	fragile = UI::Checkbox("Fragile", fragile); UI::SameLine();
 	cruise = UI::Checkbox("Cruise", cruise) && HAS_ADVANCED_EDITOR; UI::SameLine();
 	nobrake = UI::Checkbox("No Brakes", nobrake) && HAS_ADVANCED_EDITOR; UI::SameLine();
