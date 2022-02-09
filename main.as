@@ -42,6 +42,7 @@ void Begin()
 	string blockType = CURR_BLOCKS;
 	string prevBlockType = CURR_BLOCKS;
 	bool wasBlockTypeSwitched = false;
+	int blocksPlacedAfterCP = 0;
 	//--
 	
 	//start block
@@ -76,6 +77,15 @@ void Begin()
 		int turn = MathRand(1,3);
 		bool blockPlaced = false;
 		bool techConnect = false;
+		
+		if(st_useCpBlocks)
+		{
+			blocksPlacedAfterCP++;
+			if(blocksPlacedAfterCP >= st_cpBlocks)
+			{
+				block = RD_CP;
+			}
+		}
 		
 		//special block check before
 		if((block == RD_STRAIGHT && point.y == 9 && MathRand(1,8) == 4))
@@ -309,6 +319,11 @@ void Begin()
 			TGprint(block + " block cannot be placed at " + tostring(point) +", canceling previous one");
 			map.RemoveBlock(prevPoint);
 
+			if(st_useCpBlocks && block == RD_CP)
+			{
+				blocksPlacedAfterCP = blocksPlacedAfterCP-2;
+			}
+
 			if(wasBlockTypeSwitched)
 			{
 				TGprint("removing connect point from " + tostring(connectPoint));
@@ -327,6 +342,11 @@ void Begin()
 			continue;
 		}
 		//--
+		
+		if(st_useCpBlocks && block == RD_CP)
+		{
+			blocksPlacedAfterCP = 0;
+		}
 		
 		wasBlockTypeSwitched = wasBlockTypeSwitchedLocal;
 		
