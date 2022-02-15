@@ -12,6 +12,19 @@ int MathRand(int a, int b)
 	return Math::Rand(a, b);
 }
 
+string RandomSeed(int length)
+{
+	string result = "";
+	string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	
+	for(int i = 0; i < length; i++)
+	{
+		result = result.opAdd(chars.SubStr(Math::Rand(0, chars.Length), 1));
+	}
+	
+	return result;
+}
+
 double ConvertSeed(string seed)
 {
 	string newSeed = "";

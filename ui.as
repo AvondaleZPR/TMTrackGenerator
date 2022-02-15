@@ -46,7 +46,7 @@ void RenderInterface()
 	UI::Separator();
 	UI::Markdown("**Block Count**");
 	st_maxBlocks = UI::SliderInt("\\$bbb(excluding start and finish)", st_maxBlocks, 5, MAX_X + MAX_Z + (MAX_X + MAX_Z) / 2);
-	UI::Text("\\$ff0\\$s" + Icons::ExclamationCircle +" Generated track doesn't always have the exact number of blocks, because Track Generator");
+	UI::Text("\\$ff0\\$s" + Icons::ExclamationCircle +" Generated track doesn't always has the exact number of blocks, because Track Generator");
 	UI::Text("\\$ff0\\$sisn't perfect and it can get stuck. In that case Track Generator will just try to place the finish block.");
 	
 	UI::Separator();
@@ -76,7 +76,7 @@ void RenderInterface()
 	UI::SameLine();
 	opengrassroadblocks = UI::Checkbox("Platform Grass Road", opengrassroadblocks) && HAS_ADVANCED_EDITOR;
 	if (opengrassroadblocks) {OpenGrassRoadBlocks();}
-	waterblocks = UI::Checkbox("HALO AM ANDA DA WATA", waterblocks) && HAS_ADVANCED_EDITOR;
+	waterblocks = UI::Checkbox("Water Road", waterblocks) && HAS_ADVANCED_EDITOR;
 	if (waterblocks) {WaterBlocks();}
 	
 	/*
@@ -93,7 +93,10 @@ void RenderInterface()
 	seedEnabled = UI::Checkbox("Enable", seedEnabled); UI::SameLine();
 	bool changed = false;
 	UI::Text("\\$080\\$s" + Icons::Key + " Seed:"); UI::SameLine();
-	seedText = UI::InputText("", seedText, changed, UI::InputTextFlags::CharsUppercase);
+	seedText = UI::InputText("##seedText", seedText, changed, UI::InputTextFlags::CharsUppercase); UI::SameLine();
+	if (UI::Button(Icons::Random)) {
+		seedText = RandomSeed(Math::Rand(1,10));
+	}
 	seedText = seedText.SubStr(0, 10);
 	if (changed && seedEnabled) {
 		if(seedText.get_Length() > 0)
