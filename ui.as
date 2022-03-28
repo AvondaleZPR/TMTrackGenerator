@@ -3,6 +3,7 @@ bool HAS_ADVANCED_EDITOR = false;
 //vars
 bool display = false, preloaded = false;
 bool st_useCpBlocks = false;
+bool tabTrack = true, tabScenery = false;
 int st_maxBlocks = 45, st_cpBlocks = 10;
 //--
 
@@ -23,10 +24,42 @@ void RenderInterface()
 		return;
 	}
 	
-	UI::SetNextWindowSize(686, 673);
+	UI::SetNextWindowSize(686, 703);
 	UI::SetNextWindowPos(300, 300, UI::Cond::Once);
 	
 	UI::Begin("Track Generator", display, UI::WindowFlags::NoResize);	
+	UI::BeginTabBar("yep", UI::TabBarFlags::None);
+	
+		UI::PushStyleColor(UI::Col::Tab, vec4(0.7f, 0.0f, 0.0f, 1) * vec4(0.5f, 0.5f, 0.5f, 0.75f));
+		UI::PushStyleColor(UI::Col::TabHovered, vec4(0.7f, 0.0f, 0.0f, 1) * vec4(1.2f, 1.2f, 1.2f, 0.85f));
+		UI::PushStyleColor(UI::Col::TabActive, vec4(0.7f, 0.0f, 0.0f, 1));	
+		if(UI::BeginTabItem("Track Generator", tabTrack, UI::TabItemFlags::NoCloseWithMiddleMouseButton))
+		{
+			UI::BeginChild("Tab");
+			RenderTrackGenerator();
+			UI::EndChild();
+			UI::EndTabItem();
+		}
+		UI::PopStyleColor(3);
+		
+		UI::PushStyleColor(UI::Col::Tab, vec4(0.0f, 0.7f, 0.0f, 1) * vec4(0.5f, 0.5f, 0.5f, 0.75f));
+		UI::PushStyleColor(UI::Col::TabHovered, vec4(0.0f, 0.7f, 0.0f, 1) * vec4(1.2f, 1.2f, 1.2f, 0.85f));
+		UI::PushStyleColor(UI::Col::TabActive, vec4(0.0f, 0.7f, 0.0f, 1));	
+		if(UI::BeginTabItem("Scenery Generator", tabScenery, UI::TabItemFlags::None))
+		{
+			UI::BeginChild("Tab");
+			RenderSceneryGenerator();
+			UI::EndChild();
+			UI::EndTabItem();
+		}
+		UI::PopStyleColor(3);
+	
+	UI::EndTabBar();
+	UI::End();
+}
+
+void RenderTrackGenerator()
+{
 	if (UI::Button(Icons::Random + " Generate Random Track")) {
 		Begin();
 	}
@@ -137,10 +170,26 @@ void RenderInterface()
 	
 	st_useCpBlocks = UI::Checkbox("Place checkpoint after " + st_cpBlocks + " blocks", st_useCpBlocks); 
 	st_cpBlocks = UI::SliderInt("\\$bbbBlocks between checkpoints", st_cpBlocks, 2, 30);
+	
+	UI::Separator();
+	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).get_Version() + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);	
+}
+
+void RenderSceneryGenerator()
+{
+	if (UI::Button(Icons::Random + " Generate Random Scenery") && HAS_ADVANCED_EDITOR) {
+		BeginScenery();
+	}
+	UI::SameLine();
+	if (UI::Button(Icons::Trash + " Undo Last Scenery")) {
+		CancelScenery();
+	}
 	UI::Separator();
 	
+	randomcolors = UI::Checkbox("Paint blocks with random colors \\$bbb", randomcolors);
+	
+	UI::Separator();
 	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).get_Version() + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);
-	UI::End();
 }
 
 void Main()

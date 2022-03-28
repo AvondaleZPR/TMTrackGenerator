@@ -225,3 +225,8 @@ CGameEditorPluginMap::EMapElemColor RandomColor()
 	
 	return CGameEditorPluginMap::EMapElemColor::Default;
 }
+
+string RandomSceneryBlock()
+{
+	return SCENERY_BLOCKS[Math::Rand(0, SCENERY_BLOCKS.Length)];
+}

@@ -46,6 +46,23 @@ string ITEM_TURNSTILE4_1 = "ObstacleTurnstile4mTripleRightLevel0";
 string ITEM_FLAG1 = "Flag8m";
 //--
 
+//scenery blocks array
+string[] SCENERY_BLOCKS = {
+"DecoHillSlope2Straight", "DecoHillSlope2StraightX2", "DecoHillSlope2Curve1In", "DecoHillSlope2Curve1Out", "DecoPlatformBase",
+"DecoHillSlope2Straight", "DecoHillSlope2StraightX2", "DecoHillSlope2Curve1In", "DecoHillSlope2Curve1Out", "DecoPlatformBase",
+"DecoHillDirtSlope2Straight", "DecoHillDirtSlope2StraightX2", "DecoHillDirtSlope2Curve1In", "DecoHillDirtSlope2Curve1Out", "DecoPlatformDirtBase",
+"DecoHillIceSlope2Straight", "DecoHillIceSlope2StraightX2", "DecoHillIceSlope2Curve1In", "DecoHillIceSlope2Curve1Out", "DecoPlatformIceBase",
+"DecoHillSlope2Straight", "DecoHillSlope2StraightX2", "DecoHillSlope2Curve1In", "DecoHillSlope2Curve1Out", "DecoPlatformBase",
+"DecoHillSlope2Straight", "DecoHillSlope2StraightX2", "DecoHillSlope2Curve1In", "DecoHillSlope2Curve1Out", "DecoPlatformBase",
+"DecoHillDirtSlope2Straight", "DecoHillDirtSlope2StraightX2", "DecoHillDirtSlope2Curve1In", "DecoHillDirtSlope2Curve1Out", "DecoPlatformDirtBase",
+"DecoHillIceSlope2Straight", "DecoHillIceSlope2StraightX2", "DecoHillIceSlope2Curve1In", "DecoHillIceSlope2Curve1Out", "DecoPlatformIceBase",
+"StructureSupportCorner", "StructureSupportStraight", "StructureSupportCross", "StructureCross",
+"DecoWallLoopStart3x6Center", "DecoWallLoopEnd3x6Center",
+"WaterWallCorner", "WaterWallCross", "WaterWallStraight",
+"GateSpecialReset", "TechnicsScreen1x1Straight",
+};
+//--
+
 bool IsMultipleBlockTypesSelected()
 {
 	int count = 0;
