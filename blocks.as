@@ -282,7 +282,7 @@ void IceWallBlocks()
 {
 	CURR_BLOCKS = "IceWallBlocks";
 	RD_STRAIGHT = "RoadIceWithWallStraight";
-	RD_START = "RoadIceStart";
+	RD_START = "RoadIceWithWallMultilapLeft";
 	RD_FINISH = "RoadIceFinish";
 	RD_TURN1 = "RoadIceWithWallCurve1";
 	RD_TURN2 = "RoadIceWithWallCurve2";
@@ -294,7 +294,7 @@ void IceWallBlocks()
 	RD_TURBO1 = "RoadIceSpecialTurbo";
 	RD_TURBO2 = "RoadIceSpecialTurbo2";
 	RD_TURBOR = "RoadIceSpecialTurboRoulette";
-	RD_CP = "RoadIceCheckpoint";
+	RD_CP = "RoadIceWithWallCheckpointLeft";
 	RD_END = "TrackWallToRoadIce";
 	RD_CONNECT = "RoadTechToRoadIce";
 	RD_BOOSTER1 = "RoadIceSpecialBoost";
@@ -442,8 +442,8 @@ void WaterBlocks()
 {
 	CURR_BLOCKS = "WaterBlocks";
 	RD_STRAIGHT = "RoadWaterStraight";
-	RD_START = "RoadTechStart";
-	RD_FINISH = "RoadTechFinish";
+	RD_START = "RoadWaterStart";
+	RD_FINISH = "RoadWaterFinish";
 	RD_TURN1 = "RoadWaterCurve1";
 	RD_TURN2 = "RoadWaterCurve2";
 	RD_TURN3 = "RoadWaterCurve3";
@@ -451,21 +451,21 @@ void WaterBlocks()
 	RD_TURN5 = "RoadWaterCurve5";
 	RD_UP1 = "RoadTechSlopeBase";
 	RD_UP2 = "RoadTechSlopeBase2";
-	RD_TURBO1 = "RoadTechSpecialTurbo";
-	RD_TURBO2 = "RoadTechSpecialTurbo2";
+	RD_TURBO1 = "RoadWaterSpecialTurbo";
+	RD_TURBO2 = "RoadWaterSpecialTurbo2";
 	RD_TURBOR = "RoadTechSpecialTurboRoulette";
-	RD_CP = "RoadTechCheckpoint";
+	RD_CP = "RoadWaterCheckpoint";
 	RD_END = "TrackWallToRoadTech";
 	RD_CONNECT = "RoadTechToRoadTechKEKW";
-	RD_BOOSTER1 = "RoadTechSpecialBoost";
-	RD_BOOSTER2 = "RoadTechSpecialBoost2";
-	RD_NOENGINE = "RoadTechSpecialNoEngine";
-	RD_SLOWMOTION = "RoadTechSpecialSlowMotion";
-	RD_FRAGILE = "RoadTechSpecialFragile";
-	RD_NOSTEER = "RoadTechSpecialNoSteering";	
-	RD_RESET = "RoadTechSpecialReset";
-	RD_CRUISE = "RoadTechSpecialCruise";
-	RD_NOBRAKE = "RoadTechSpecialNoBrake";
+	RD_BOOSTER1 = "RoadWaterSpecialBoost";
+	RD_BOOSTER2 = "RoadWaterSpecialBoost2";
+	RD_NOENGINE = "RoadWaterSpecialNoEngine";
+	RD_SLOWMOTION = "RoadWaterSpecialSlowMotion";
+	RD_FRAGILE = "RoadWaterSpecialFragile";
+	RD_NOSTEER = "RoadWaterhSpecialNoSteering";	
+	RD_RESET = "RoadWaterSpecialReset";
+	RD_CRUISE = "RoadWaterSpecialCruise";
+	RD_NOBRAKE = "RoadWaterSpecialNoBrake";
 	RD_COOL1 = "RoadWaterBranchCross";
 	RD_COOL2 = "RoadTechRampLow";
 }
