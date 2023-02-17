@@ -30,7 +30,7 @@ string RD_COOL2 = "";
 //--
 
 //enabled blocks
-bool roadblocks = true, dirtblocks = false, iceblocks = false, icewallblocks = false, sausageblocks = false, opentechroadblocks = false, opendirtroadblocks = false, openiceroadblocks = false, opengrassroadblocks = false, waterblocks = false;
+bool roadblocks = true, dirtblocks = false, iceblocks = false, icewallblocks = false, sausageblocks = false, opentechroadblocks = false, opendirtroadblocks = false, openiceroadblocks = false, opengrassroadblocks = false, waterblocks = false, platformtechblocks = false, platformdirtblocks = false, platformiceblocks = false, platformgrassblocks = false, plasticblocks = false;
 bool turbo1 = true, turbo2 = false, booster1 = false, booster2 = false, noengine = false, slowmotion = false, fragile = false, nosteer = false, reset = false, cruise = false, nobrake = false, turbor = false;
 bool coolblocks = true, randomcolors = false;
 //--
@@ -57,25 +57,33 @@ string[] SCENERY_BLOCKS = {
 "DecoHillDirtSlope2Straight", "DecoHillDirtSlope2StraightX2", "DecoHillDirtSlope2Curve1In", "DecoHillDirtSlope2Curve1Out", "DecoPlatformDirtBase",
 "DecoHillIceSlope2Straight", "DecoHillIceSlope2StraightX2", "DecoHillIceSlope2Curve1In", "DecoHillIceSlope2Curve1Out", "DecoPlatformIceBase",
 "StructureSupportCorner", "StructureSupportStraight", "StructureSupportCross", "StructureCross",
-"DecoWallLoopStart3x6Center", "DecoWallLoopEnd3x6Center",
+"DecoWallLoopStart3x6Center", "DecoWallLoopEnd3x6Center", "PlatformTechLoopStart", "PlatformPlasticLoopStart",
 "WaterWallCorner", "WaterWallCross", "WaterWallStraight",
 "GateSpecialReset", "TechnicsScreen1x1Straight",
+"StageTechnicsLightDeadend", "StageTechnicsLightDeadend", "StageTechnicsLightDeadend",
+"CanopyCenterFlatBase", "StageCurve1In", "StandStraight",
+"CanopyCenterFlatBase", "StageCurve1In", "StandStraight",
 };
 //--
 
 bool IsMultipleBlockTypesSelected()
 {
 	int count = 0;
-	if (roadblocks) { count++;}
-	if (dirtblocks) { count++;}
-	if (iceblocks) { count++;}
-	if (icewallblocks) { count++;}
-	if (sausageblocks) { count++;}
-	if (opentechroadblocks) { count++;}
-	if (opendirtroadblocks) { count++;}
-	if (openiceroadblocks) { count++;}
-	if (opengrassroadblocks) { count++;}
-	if (waterblocks) { count++;}
+	if (roadblocks) { count++; }
+	if (dirtblocks) { count++; }
+	if (iceblocks) { count++; }
+	if (icewallblocks) { count++; }
+	if (sausageblocks) { count++; }
+	if (opentechroadblocks) { count++; }
+	if (opendirtroadblocks) { count++; }
+	if (openiceroadblocks) { count++; }
+	if (opengrassroadblocks) { count++; }
+	if (waterblocks) { count++; }
+	if (platformtechblocks) { count++; }
+	if (platformdirtblocks) { count++; }
+	if (platformiceblocks) { count++; }
+	if (platformgrassblocks) { count++; }
+	if (plasticblocks) { count++; }
 	return count > 1;
 }
 
@@ -83,73 +91,105 @@ bool SetBlockType(int id)
 {
 	if (id == 1 && roadblocks && CURR_BLOCKS != "TechBlocks") 
 	{
-		TechBlocks();
+		blocks::TechBlocks();
 		return true;
 	}
 	else if(id == 2 && dirtblocks && CURR_BLOCKS != "DirtBlocks")
 	{
-		DirtBlocks();
+		blocks::DirtBlocks();
 		return true;		
 	}
 	else if(id == 3 && iceblocks && CURR_BLOCKS != "IceBlocks")
 	{
-		IceBlocks();
+		blocks::IceBlocks();
 		return true;		
 	}
 	else if(id == 4 && sausageblocks && CURR_BLOCKS != "SausageBlocks")
 	{
-		SausageBlocks();
+		blocks::SausageBlocks();
 		return true;		
 	}
 	else if(id == 5 && icewallblocks && CURR_BLOCKS != "IceWallBlocks")
 	{
-		IceWallBlocks();
+		blocks::IceWallBlocks();
 		return true;
 	}
 	else if(id == 6 && opentechroadblocks && CURR_BLOCKS != "OpenTechRoadBlocks")
 	{
-		OpenTechRoadBlocks();
+		blocks::OpenTechRoadBlocks();
 		return true;
 	}
 	else if(id == 7 && opendirtroadblocks && CURR_BLOCKS != "OpenDirtRoadBlocks")
 	{
-		OpenDirtRoadBlocks();
+		blocks::OpenDirtRoadBlocks();
 		return true;
 	}
 	else if(id == 8 && openiceroadblocks && CURR_BLOCKS != "OpenIceRoadBlocks")
 	{
-		OpenIceRoadBlocks();
+		blocks::OpenIceRoadBlocks();
 		return true;
 	}
-	else if(id >= 9 && opengrassroadblocks && CURR_BLOCKS != "OpenGrassRoadBlocks")
+	else if(id == 9 && opengrassroadblocks && CURR_BLOCKS != "OpenGrassRoadBlocks")
 	{
-		OpenGrassRoadBlocks();
+		blocks::OpenGrassRoadBlocks();
 		return true;
 	}	
-	else if(id >= 10 && waterblocks && CURR_BLOCKS != "WaterBlocks")
+	else if(id == 10 && waterblocks && CURR_BLOCKS != "WaterBlocks")
 	{
-		WaterBlocks();
+		blocks::WaterBlocks();
+		return true;
+	}
+	else if(id == 11 && platformtechblocks && CURR_BLOCKS != "PlatformTechBlocks")
+	{
+		blocks::PlatformTechBlocks();
+		return true;
+	}
+	else if(id == 12 && platformdirtblocks && CURR_BLOCKS != "PlatformDirtBlocks")
+	{
+		blocks::PlatformDirtBlocks();
+		return true;
+	}
+	else if(id == 13 && platformiceblocks && CURR_BLOCKS != "PlatformIceBlocks")
+	{
+		blocks::PlatformIceBlocks();
+		return true;
+	}
+	else if(id == 14 && platformgrassblocks && CURR_BLOCKS != "PlatformGrassBlocks")
+	{
+		blocks::PlatformGrassBlocks();
+		return true;
+	}	
+	else if(id >= 15 && plasticblocks && CURR_BLOCKS != "PlasticBlocks")
+	{
+		blocks::PlasticBlocks();
 		return true;
 	}
 	
 	return false;
 }
 
-void SetBlockType(string type)
+void SetBlockType(const string type)
 {
-	if(type == "TechBlocks") {TechBlocks();}
-	if(type == "DirtBlocks") {DirtBlocks();}
-	if(type == "IceBlocks") {IceBlocks();}
-	if(type == "SausageBlocks") {SausageBlocks();}
-	if(type == "IceWallBlocks") {IceWallBlocks();}
-	if(type == "OpenTechRoadBlocks") {OpenTechRoadBlocks();}
-	if(type == "OpenDirtRoadBlocks") {OpenDirtRoadBlocks();}
-	if(type == "OpenIceRoadBlocks") {OpenIceRoadBlocks();}
-	if(type == "OpenGrassRoadBlocks") {OpenGrassRoadBlocks();}
-	if(type == "WaterBlocks") {WaterBlocks();}
+	if(type == "TechBlocks") {blocks::TechBlocks();}
+	if(type == "DirtBlocks") {blocks::DirtBlocks();}
+	if(type == "IceBlocks") {blocks::IceBlocks();}
+	if(type == "SausageBlocks") {blocks::SausageBlocks();}
+	if(type == "IceWallBlocks") {blocks::IceWallBlocks();}
+	if(type == "OpenTechRoadBlocks") {blocks::OpenTechRoadBlocks();}
+	if(type == "OpenDirtRoadBlocks") {blocks::OpenDirtRoadBlocks();}
+	if(type == "OpenIceRoadBlocks") {blocks::OpenIceRoadBlocks();}
+	if(type == "OpenGrassRoadBlocks") {blocks::OpenGrassRoadBlocks();}
+	if(type == "WaterBlocks") {blocks::WaterBlocks();}
+	if(type == "PlatformTechBlocks") {blocks::PlatformTechBlocks();}
+	if(type == "PlatformDirtBlocks") {blocks::PlatformDirtBlocks();}
+	if(type == "PlatformIceBlocks") {blocks::PlatformIceBlocks();}
+	if(type == "PlatformGrassBlocks") {blocks::PlatformGrassBlocks();}
+	if(type == "PlasticBlocks") {blocks::PlasticBlocks();}
 }
 
 //block blanks fillers
+namespace blocks
+{
 void TechBlocks()
 {
 	CURR_BLOCKS = "TechBlocks";
@@ -468,5 +508,166 @@ void WaterBlocks()
 	RD_NOBRAKE = "RoadWaterSpecialNoBrake";
 	RD_COOL1 = "RoadWaterBranchCross";
 	RD_COOL2 = "RoadTechRampLow";
+}
+
+void PlatformTechBlocks()
+{
+	CURR_BLOCKS = "PlatformTechBlocks";
+	RD_STRAIGHT = "PlatformTechBase";
+	RD_START = "PlatformTechStart";
+	RD_FINISH = "PlatformTechFinish";
+	RD_TURN1 = "PlatformTechCurve1";
+	RD_TURN2 = "PlatformTechCurve2";
+	RD_TURN3 = "PlatformTechCurve3";
+	RD_TURN4 = "PlatformTechCurve4";
+	RD_TURN5 = "PlatformTechCurve5";
+	RD_UP1 = "PlatformTechSlopeBase";
+	RD_UP2 = "PlatformTechSlopeBase2";
+	RD_TURBO1 = "PlatformTechSpecialTurbo";
+	RD_TURBO2 = "PlatformTechSpecialTurbo2";
+	RD_TURBOR = "PlatformTechSpecialTurboRoulette";
+	RD_CP = "PlatformTechCheckpoint";
+	RD_END = "PlatformTechToDecoWall";
+	RD_CONNECT = "PlatformTechToRoadTech";
+	RD_BOOSTER1 = "PlatformTechSpecialBoost";
+	RD_BOOSTER2 = "PlatformTechSpecialBoost2";
+	RD_NOENGINE = "PlatformTechSpecialNoEngine";
+	RD_SLOWMOTION = "PlatformTechSpecialSlowMotion";
+	RD_FRAGILE = "PlatformTechSpecialFragile";
+	RD_NOSTEER = "PlatformTechSpecialNoSteering";	
+	RD_RESET = "PlatformTechSpecialReset";
+	RD_CRUISE = "PlatformTechSpecialCruise";
+	RD_NOBRAKE = "PlatformTechSpecialNoBrake";
+	RD_COOL1 = "PlatformTechBaseWithHole24m";
+	RD_COOL2 = "PlatformTechSlope2Start";
+}	
+
+void PlatformDirtBlocks()
+{
+	CURR_BLOCKS = "PlatformDirtBlocks";
+	RD_STRAIGHT = "PlatformDirtBase";
+	RD_START = "PlatformDirtStart";
+	RD_FINISH = "PlatformDirtFinish";
+	RD_TURN1 = "PlatformDirtCurve1";
+	RD_TURN2 = "PlatformDirtCurve2";
+	RD_TURN3 = "PlatformDirtCurve3";
+	RD_TURN4 = "PlatformDirtCurve4";
+	RD_TURN5 = "PlatformDirtCurve5";
+	RD_UP1 = "PlatformDirtSlopeBase";
+	RD_UP2 = "PlatformDirtSlopeBase2";
+	RD_TURBO1 = "PlatformDirtSpecialTurbo";
+	RD_TURBO2 = "PlatformDirtSpecialTurbo2";
+	RD_TURBOR = "PlatformDirtSpecialTurboRoulette";
+	RD_CP = "PlatformDirtCheckpoint";
+	RD_END = "PlatformDirtToDecoWall";
+	RD_CONNECT = "PlatformDirtToRoadTech";
+	RD_BOOSTER1 = "PlatformDirtSpecialBoost";
+	RD_BOOSTER2 = "PlatformDirtSpecialBoost2";
+	RD_NOENGINE = "PlatformDirtSpecialNoEngine";
+	RD_SLOWMOTION = "PlatformDirtSpecialSlowMotion";
+	RD_FRAGILE = "PlatformDirtSpecialFragile";
+	RD_NOSTEER = "PlatformDirtSpecialNoSteering";	
+	RD_RESET = "PlatformDirtSpecialReset";
+	RD_CRUISE = "PlatformDirtSpecialCruise";
+	RD_NOBRAKE = "PlatformDirtSpecialNoBrake";
+	RD_COOL1 = "PlatformDirtBaseWithHole24m";
+	RD_COOL2 = "PlatformDirtSlope2Start";
+}	
+
+void PlatformIceBlocks()
+{
+	CURR_BLOCKS = "PlatformIceBlocks";
+	RD_STRAIGHT = "PlatformIceBase";
+	RD_START = "PlatformIceStart";
+	RD_FINISH = "PlatformIceFinish";
+	RD_TURN1 = "PlatformIceCurve1";
+	RD_TURN2 = "PlatformIceCurve2";
+	RD_TURN3 = "PlatformIceCurve3";
+	RD_TURN4 = "PlatformIceCurve4";
+	RD_TURN5 = "PlatformIceCurve5";
+	RD_UP1 = "PlatformIceSlopeBase";
+	RD_UP2 = "PlatformIceSlopeBase2";
+	RD_TURBO1 = "PlatformIceSpecialTurbo";
+	RD_TURBO2 = "PlatformIceSpecialTurbo2";
+	RD_TURBOR = "PlatformIceSpecialTurboRoulette";
+	RD_CP = "PlatformIceCheckpoint";
+	RD_END = "PlatformIceToDecoWall";
+	RD_CONNECT = "PlatformIceToRoadTech";
+	RD_BOOSTER1 = "PlatformIceSpecialBoost";
+	RD_BOOSTER2 = "PlatformIceSpecialBoost2";
+	RD_NOENGINE = "PlatformIceSpecialNoEngine";
+	RD_SLOWMOTION = "PlatformIceSpecialSlowMotion";
+	RD_FRAGILE = "PlatformIceSpecialFragile";
+	RD_NOSTEER = "PlatformIceSpecialNoSteering";	
+	RD_RESET = "PlatformIceSpecialReset";
+	RD_CRUISE = "PlatformIceSpecialCruise";
+	RD_NOBRAKE = "PlatformIceSpecialNoBrake";
+	RD_COOL1 = "PlatformIceBaseWithHole24m";
+	RD_COOL2 = "PlatformIceSlope2Start";
+}	
+
+void PlatformGrassBlocks()
+{
+	CURR_BLOCKS = "PlatformGrassBlocks";
+	RD_STRAIGHT = "PlatformGrassBase";
+	RD_START = "PlatformGrassStart";
+	RD_FINISH = "PlatformGrassFinish";
+	RD_TURN1 = "PlatformGrassCurve1";
+	RD_TURN2 = "PlatformGrassCurve2";
+	RD_TURN3 = "PlatformGrassCurve3";
+	RD_TURN4 = "PlatformGrassCurve4";
+	RD_TURN5 = "PlatformGrassCurve5";
+	RD_UP1 = "PlatformGrassSlopeBase";
+	RD_UP2 = "PlatformGrassSlopeBase2";
+	RD_TURBO1 = "PlatformGrassSpecialTurbo";
+	RD_TURBO2 = "PlatformGrassSpecialTurbo2";
+	RD_TURBOR = "PlatformGrassSpecialTurboRoulette";
+	RD_CP = "PlatformGrassCheckpoint";
+	RD_END = "PlatformGrassToDecoWall";
+	RD_CONNECT = "PlatformGrassToRoadTech";
+	RD_BOOSTER1 = "PlatformGrassSpecialBoost";
+	RD_BOOSTER2 = "PlatformGrassSpecialBoost2";
+	RD_NOENGINE = "PlatformGrassSpecialNoEngine";
+	RD_SLOWMOTION = "PlatformGrassSpecialSlowMotion";
+	RD_FRAGILE = "PlatformGrassSpecialFragile";
+	RD_NOSTEER = "PlatformGrassSpecialNoSteering";	
+	RD_RESET = "PlatformGrassSpecialReset";
+	RD_CRUISE = "PlatformGrassSpecialCruise";
+	RD_NOBRAKE = "PlatformGrassSpecialNoBrake";
+	RD_COOL1 = "PlatformGrassBaseWithHole24m";
+	RD_COOL2 = "PlatformGrassSlope2Start";
+}	
+
+void PlasticBlocks()
+{
+	CURR_BLOCKS = "PlasticBlocks";
+	RD_STRAIGHT = "PlatformPlasticBase";
+	RD_START = "PlatformPlasticStart";
+	RD_FINISH = "PlatformPlasticFinish";
+	RD_TURN1 = "PlatformPlasticCurve1";
+	RD_TURN2 = "PlatformPlasticCurve2";
+	RD_TURN3 = "PlatformPlasticCurve3";
+	RD_TURN4 = "PlatformPlasticCurve4";
+	RD_TURN5 = "PlatformPlasticCurve5";
+	RD_UP1 = "PlatformPlasticSlopeBase";
+	RD_UP2 = "PlatformPlasticSlopeBase2";
+	RD_TURBO1 = "PlatformPlasticSpecialTurbo";
+	RD_TURBO2 = "PlatformPlasticSpecialTurbo2";
+	RD_TURBOR = "PlatformPlasticSpecialTurboRoulette";
+	RD_CP = "PlatformPlasticCheckpoint";
+	RD_END = "PlatformPlasticToDecoWall";
+	RD_CONNECT = "PlatformPlasticToRoadTech";
+	RD_BOOSTER1 = "PlatformPlasticSpecialBoost";
+	RD_BOOSTER2 = "PlatformPlasticSpecialBoost2";
+	RD_NOENGINE = "PlatformPlasticSpecialNoEngine";
+	RD_SLOWMOTION = "PlatformPlasticSpecialSlowMotion";
+	RD_FRAGILE = "PlatformPlasticSpecialFragile";
+	RD_NOSTEER = "PlatformPlasticSpecialNoSteering";	
+	RD_RESET = "PlatformPlasticSpecialReset";
+	RD_CRUISE = "PlatformPlasticSpecialCruise";
+	RD_NOBRAKE = "PlatformPlasticSpecialNoBrake";
+	RD_COOL1 = "PlatformPlasticBaseWithHole24m";
+	RD_COOL2 = "PlatformPlasticSlope2Start";
+}	
 }
 //--

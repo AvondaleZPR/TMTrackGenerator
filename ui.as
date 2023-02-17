@@ -24,7 +24,7 @@ void RenderInterface()
 		return;
 	}
 	
-	UI::SetNextWindowSize(686, 703);
+	UI::SetNextWindowSize(686, 733);
 	UI::SetNextWindowPos(300, 300, UI::Cond::Once);
 	
 	UI::Begin("Track Generator", display, UI::WindowFlags::NoResize);	
@@ -85,32 +85,46 @@ void RenderTrackGenerator()
 	UI::Separator();
 	UI::Markdown("**Block Style**");
 	roadblocks = UI::Checkbox("Tech Road", roadblocks);
-	if (roadblocks) {TechBlocks();}
+	if (roadblocks) {blocks::TechBlocks();}
 	UI::SameLine();
 	dirtblocks = UI::Checkbox("Dirt Road", dirtblocks);
-	if (dirtblocks) {DirtBlocks();}
+	if (dirtblocks) {blocks::DirtBlocks();}
 	UI::SameLine();
 	iceblocks = UI::Checkbox("Ice Road", iceblocks) && HAS_ADVANCED_EDITOR;
-	if (iceblocks) {IceBlocks();}
+	if (iceblocks) {blocks::IceBlocks();}
 	UI::SameLine();
 	icewallblocks = UI::Checkbox("Ice Road With Wall", icewallblocks);
-	if (icewallblocks) {IceWallBlocks();}
+	if (icewallblocks) {blocks::IceWallBlocks();}
 	UI::SameLine();
 	sausageblocks = UI::Checkbox("Sausage Road", sausageblocks);
-	if (sausageblocks) {SausageBlocks();}	
+	if (sausageblocks) {blocks::SausageBlocks();}
+	platformtechblocks = UI::Checkbox("Tech Platform", platformtechblocks) && HAS_ADVANCED_EDITOR;
+	if (platformtechblocks) {blocks::PlatformTechBlocks();}	
+	UI::SameLine();
+	platformdirtblocks = UI::Checkbox("Dirt Platform", platformdirtblocks) && HAS_ADVANCED_EDITOR;
+	if (platformdirtblocks) {blocks::PlatformDirtBlocks();}	
+	UI::SameLine();
+	platformiceblocks = UI::Checkbox("Ice Platform", platformiceblocks) && HAS_ADVANCED_EDITOR;
+	if (platformiceblocks) {blocks::PlatformIceBlocks();}	
+	UI::SameLine();
+	platformgrassblocks = UI::Checkbox("Grass Platform", platformgrassblocks) && HAS_ADVANCED_EDITOR;
+	if (platformgrassblocks) {blocks::PlatformGrassBlocks();}		
+	UI::SameLine();
+	plasticblocks = UI::Checkbox("Plastic Platform", plasticblocks) && HAS_ADVANCED_EDITOR;
+	if (plasticblocks) {blocks::PlasticBlocks();}		
 	opentechroadblocks = UI::Checkbox("Platform Tech Road", opentechroadblocks) && HAS_ADVANCED_EDITOR;
-	if (opentechroadblocks) {OpenTechRoadBlocks();}
+	if (opentechroadblocks) {blocks::OpenTechRoadBlocks();}
 	UI::SameLine();
 	opendirtroadblocks = UI::Checkbox("Platform Dirt Road", opendirtroadblocks) && HAS_ADVANCED_EDITOR;
-	if (opendirtroadblocks) {OpenDirtRoadBlocks();}
+	if (opendirtroadblocks) {blocks::OpenDirtRoadBlocks();}
 	UI::SameLine();
 	openiceroadblocks = UI::Checkbox("Platform Ice Road", openiceroadblocks) && HAS_ADVANCED_EDITOR;
-	if (openiceroadblocks) {OpenIceRoadBlocks();}
+	if (openiceroadblocks) {blocks::OpenIceRoadBlocks();}
 	UI::SameLine();
 	opengrassroadblocks = UI::Checkbox("Platform Grass Road", opengrassroadblocks) && HAS_ADVANCED_EDITOR;
-	if (opengrassroadblocks) {OpenGrassRoadBlocks();}
+	if (opengrassroadblocks) {blocks::OpenGrassRoadBlocks();}
 	waterblocks = UI::Checkbox("Water Road", waterblocks) && HAS_ADVANCED_EDITOR;
-	if (waterblocks) {WaterBlocks();}
+	if (waterblocks) {blocks::WaterBlocks();}	
 	
 	/*
 	if(IsMultipleBlockTypesSelected()) {
@@ -132,7 +146,7 @@ void RenderTrackGenerator()
 	}
 	seedText = seedText.SubStr(0, 10);
 	if (changed && seedEnabled) {
-		if(seedText.get_Length() > 0)
+		if(seedText.Length > 0)
 		{
 			seedDouble = ConvertSeed(seedText);
 		}
@@ -172,7 +186,7 @@ void RenderTrackGenerator()
 	st_cpBlocks = UI::SliderInt("\\$bbbBlocks between checkpoints", st_cpBlocks, 2, 30);
 	
 	UI::Separator();
-	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).get_Version() + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);	
+	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).Version + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);	
 }
 
 void RenderSceneryGenerator()
@@ -189,7 +203,7 @@ void RenderSceneryGenerator()
 	randomcolors = UI::Checkbox("Paint blocks with random colors \\$bbb", randomcolors);
 	
 	UI::Separator();
-	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).get_Version() + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);
+	UI::Text("\\$999\\$sTrack Generator " + Meta::GetPluginFromSiteID(156).Version + " by \\$bbbAvondaleZPR \\$999" + Icons::Copyright);
 }
 
 void Main()
@@ -207,7 +221,7 @@ void Main()
 	seedText = playerInfo.Name;
 	seedText = seedText.ToUpper();
 	
-	TechBlocks();
+	blocks::TechBlocks();
 	
 	MainThinker();
 }

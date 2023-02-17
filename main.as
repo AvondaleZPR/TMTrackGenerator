@@ -180,7 +180,7 @@ void Begin()
 			if(CanPlaceBlock(map, block, dir, point.opAdd(MoveDir(dir))) && CanPlaceBlock(map, block, dir, point.opAdd(MoveDir(dir)).opAdd(MoveDir(dir))))
 			{
 				TGprint("Switch Block Type");
-				if(CURR_BLOCKS != "OpenTechRoadBlocks" && CURR_BLOCKS != "OpenDirtRoadBlocks" && CURR_BLOCKS != "OpenIceRoadBlocks" && CURR_BLOCKS != "OpenGrassRoadBlocks")
+				if(CURR_BLOCKS != "OpenTechRoadBlocks" && CURR_BLOCKS != "OpenDirtRoadBlocks" && CURR_BLOCKS != "OpenIceRoadBlocks" && CURR_BLOCKS != "OpenGrassRoadBlocks" && CURR_BLOCKS != "PlatformTechBlocks" && CURR_BLOCKS != "PlatformDirtBlocks" && CURR_BLOCKS != "PlatformIceBlocks" && CURR_BLOCKS != "PlatformGrassBlocks" && CURR_BLOCKS != "PlasticBlocks")
 				{
 					dir = TurnDirLeft(dir);
 					dir = TurnDirLeft(dir);
@@ -275,7 +275,7 @@ void Begin()
 				
 				point = point.opAdd(MoveDir(dir));
 				
-				if(CURR_BLOCKS == "OpenTechRoadBlocks" || CURR_BLOCKS == "OpenDirtRoadBlocks" || CURR_BLOCKS == "OpenIceRoadBlocks" || CURR_BLOCKS == "OpenGrassRoadBlocks")
+				if(CURR_BLOCKS == "OpenTechRoadBlocks" || CURR_BLOCKS == "OpenDirtRoadBlocks" || CURR_BLOCKS == "OpenIceRoadBlocks" || CURR_BLOCKS == "OpenGrassRoadBlocks" || CURR_BLOCKS == "PlatformTechBlocks" || CURR_BLOCKS == "PlatformDirtBlocks" || CURR_BLOCKS == "PlatformIceBlocks" || CURR_BLOCKS == "PlatformGrassBlocks" || CURR_BLOCKS == "PlasticBlocks")
 				{
 					dir = TurnDirLeft(dir);
 					dir = TurnDirLeft(dir);					
@@ -292,7 +292,7 @@ void Begin()
 				connectPoint = point;
 				TGprint("placed connect point at " + tostring(connectPoint));
 				
-				if(CURR_BLOCKS == "OpenTechRoadBlocks" || CURR_BLOCKS == "OpenDirtRoadBlocks" || CURR_BLOCKS == "OpenIceRoadBlocks" || CURR_BLOCKS == "OpenGrassRoadBlocks")
+				if(CURR_BLOCKS == "OpenTechRoadBlocks" || CURR_BLOCKS == "OpenDirtRoadBlocks" || CURR_BLOCKS == "OpenIceRoadBlocks" || CURR_BLOCKS == "OpenGrassRoadBlocks" || CURR_BLOCKS == "PlatformTechBlocks" || CURR_BLOCKS == "PlatformDirtBlocks" || CURR_BLOCKS == "PlatformIceBlocks" || CURR_BLOCKS == "PlatformGrassBlocks" || CURR_BLOCKS == "PlasticBlocks")
 				{
 					dir = dirCopy;
 				}

@@ -1,4 +1,4 @@
-bool PlaceBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
+bool PlaceBlock(CGameEditorPluginMap@ map, const string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
 {
     auto info = map.GetBlockModelFromName(blockName);
 	
@@ -14,7 +14,7 @@ bool PlaceBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPluginMa
     return map.PlaceBlock(info, point, dir);
 }
 
-bool CanPlaceBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
+bool CanPlaceBlock(CGameEditorPluginMap@ map, const string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
 {
 	auto info = map.GetBlockModelFromName(blockName);
 
@@ -35,7 +35,7 @@ bool CanPlaceBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPlugi
     return map.CanPlaceBlock(info, point, dir, true, 0);
 }
 
-bool PlaceGhostBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
+bool PlaceGhostBlock(CGameEditorPluginMap@ map, const string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
 {
 	auto info = map.GetBlockModelFromName(blockName);
 	
@@ -46,7 +46,7 @@ bool PlaceGhostBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPlu
     return map.PlaceGhostBlock(info, point, dir);	
 }
 
-bool CanPlaceGhostBlock(CGameEditorPluginMap@ map, string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
+bool CanPlaceGhostBlock(CGameEditorPluginMap@ map, const string blockName, CGameEditorPluginMap::ECardinalDirections dir, int3 point)
 {
 	auto info = map.GetBlockModelFromName(blockName);
 	
@@ -57,7 +57,7 @@ bool CanPlaceGhostBlock(CGameEditorPluginMap@ map, string blockName, CGameEditor
     return map.CanPlaceGhostBlock(info, point, dir);	
 }
 
-CGameEditorPluginMapConnectResults@ ConnectBlocks(CGameEditorPluginMap@ map, CGameCtnBlock@ eBlock, string nBlock)
+CGameEditorPluginMapConnectResults@ ConnectBlocks(CGameEditorPluginMap@ map, CGameCtnBlock@ eBlock, const string nBlock)
 {
 	try
     {

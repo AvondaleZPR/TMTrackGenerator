@@ -1,4 +1,4 @@
-void TGprint(string str)
+void TGprint(const string str)
 {
 	if(st_debug)
 	{

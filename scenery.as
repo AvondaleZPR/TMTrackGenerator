@@ -67,6 +67,10 @@ void BeginScenery()
 					{
 						map.SetBlockSkin(map.GetBlock(point), SCREEN_LINK);
 					}
+					if (sceneryBlockName.Contains("Light"))
+					{
+						//map.SetBlockSkin(map.GetBlock(point), "Red");
+					}					
 				}
 			}
 			else

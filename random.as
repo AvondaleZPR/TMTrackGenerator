@@ -25,11 +25,11 @@ string RandomSeed(int length)
 	return result;
 }
 
-double ConvertSeed(string seed)
+double ConvertSeed(const string seed)
 {
 	string newSeed = "";
 	
-	int length = seed.get_Length();
+	int length = seed.Length;
 	if (length > 10) {length = 10;}
 	for(int i = 0; i < length; i++)
 	{
@@ -190,7 +190,7 @@ void RandomBlocks()
 		bool ready = false;
 		while(!ready)
 		{
-			ready = SetBlockType(MathRand(1,11));
+			ready = SetBlockType(MathRand(1,16));
 		}
 	}
 }
